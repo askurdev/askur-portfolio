@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Askur Rahman — AI Integration Specialist &amp; Full-Stack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#060913; --bg-elevated:#0b1120; --surface:#0f172a; --surface-2:#1e293b;
+  --border:rgba(51,65,85,0.4); --border-focus:rgba(47,214,192,0.6); --text:#f8fafc; --muted:#94a3b8; --muted-2:#64748b;
+  --accent:#2fd6c0; --accent-dim:rgba(47,214,192,0.12); --accent-glow:rgba(47,214,192,0.25);
+  --hero-blue:#60a5fa; --btn-orange:#f59e0b; --btn-orange-hover:#d97706;
+  --font-display:'Space Grotesk',sans-serif; --font-body:'Inter',sans-serif; --font-mono:'JetBrains Mono',monospace;
+  --radius:16px; --container:1240px;
+}
+
+body.light-theme {
+  --bg:#f8fafc; --bg-elevated:#ffffff; --surface:#f1f5f9; --surface-2:#e2e8f0;
+  --border:rgba(148,163,184,0.4); --border-focus:rgba(245,158,11,0.8); --text:#0f172a; --muted:#475569; --muted-2:#94a3b8;
+  --accent:#0ea5e9; --accent-dim:rgba(14,165,233,0.1); --accent-glow:rgba(14,165,233,0.25);
+  --hero-blue:#2563eb; --btn-orange:#f59e0b; --btn-orange-hover:#d97706;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background 0.3s ease, color 0.3s ease}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;background:none;border:none}
+::selection{background:var(--btn-orange);color:#060913}
+h1,h2,h3{font-family:var(--font-display);color:var(--text);line-height:1.1;letter-spacing:-.02em}
+
+.bg-grid{position:fixed;inset:0;z-index:-1;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:54px 54px;opacity:.12;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 10%,black 40%,transparent 90%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 10%,black 40%,transparent 90%);
+}
+
+/* Nav Bar */
+.nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;
+  padding:16px clamp(20px,5vw,64px);background:rgba(6,9,19,0.85);backdrop-filter:blur(12px);border-bottom:1px solid rgba(51,65,85,0.25);transition:all 0.3s}
+body.light-theme .nav{background:rgba(248,250,252,0.85);border-bottom-color:rgba(148,163,184,0.2)}
+.nav__brand{font-family:var(--font-mono);font-weight:500;font-size:15px;color:var(--text)}
+.nav__brand span.prefix{color:var(--muted-2)}
+.nav__brand span.dot{color:var(--hero-blue)}
+
+.nav__links{display:flex;align-items:center;justify-content:space-between;flex:1;margin-left:8%;gap:32px}
+.nav__menu-items{display:flex;align-items:center;gap:28px}
+.nav__menu-items a{font-family:var(--font-mono);font-size:13px;color:var(--muted);transition:color .2s}
+.nav__menu-items a:hover, .nav__menu-items a.is-active{color:var(--text)}
+
+.nav__actions{display:flex;align-items:center;gap:12px}
+.btn-nav-outline{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12.5px;color:var(--text);
+  border:1px solid var(--border);padding:9px 16px;background:transparent;transition:all 0.2s}
+.btn-nav-outline:hover{border-color:var(--muted);background:rgba(255,255,255,0.05)}
+
+.btn-nav-square{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;color:var(--muted);border:1px solid var(--border);transition:all 0.2s}
+.btn-nav-square:hover{border-color:var(--muted);color:var(--text)}
+
+.btn-nav-filled{display:inline-flex;align-items:center;font-family:var(--font-mono);font-size:12.5px;font-weight:600;color:#060913;background:var(--btn-orange);padding:9.5px 20px;transition:all 0.2s}
+.btn-nav-filled:hover{background:var(--btn-orange-hover);box-shadow:0 0 15px rgba(245,158,11,0.3)}
+.nav__toggle{display:none;flex-direction:column;gap:5px;padding:8px}
+.nav__toggle span{width:22px;height:2px;background:var(--text);display:block}
+
+@media (max-width:1024px){
+  .nav__links{position:absolute;top:100%;left:0;right:0;flex-direction:column;align-items:stretch;gap:24px;margin-left:0;background:var(--bg-elevated);max-height:0;overflow:hidden;transition:all .3s ease}
+  .nav__links.is-open{max-height:480px;padding:24px 32px;border-bottom:1px solid var(--border)}
+  .nav__menu-items{flex-direction:column;align-items:flex-start;gap:16px}
+  .nav__actions{flex-direction:column;gap:12px}
+  .nav__toggle{display:flex}
+}
+
+/* Sections */
+main>section{padding:80px clamp(20px,5vw,64px);max-width:var(--container);margin:0 auto;scroll-margin-top:90px}
+.eyebrow{font-family:var(--font-mono);font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);display:inline-flex;align-items:center;gap:8px}
+.section__head{margin-bottom:48px}
+.section__head h2{font-size:clamp(30px,4.5vw,42px);font-weight:700;margin-top:12px}
+.section__sub{color:var(--muted);font-size:16.5px;margin-top:8px;max-width:640px}
+.verify-link{display:inline-flex;align-items:center;gap:6px;margin-top:16px;font-family:var(--font-mono);font-size:12.5px;color:var(--hero-blue);transition:color 0.2s ease}
+.verify-link:hover{color:var(--text)}
+
+/* Hero Section */
+.hero{display:grid;grid-template-columns:1.2fr 0.8fr;gap:48px;align-items:center;min-height:75vh;padding-top:40px}
+.hero__name{font-size:clamp(34px,4.5vw,52px);font-weight:700;line-height:1.15;margin-bottom:20px}
+.hero__highlight{color:var(--hero-blue);display:block;margin-top:4px}
+.hero__pitch{font-size:17px;color:var(--muted);max-width:620px}
+.hero__identity{display:flex;align-items:center;gap:16px;margin-bottom:22px}
+.hero__avatar-wrap{position:relative;width:68px;height:68px;border-radius:50%;flex-shrink:0;padding:3px;
+  background:conic-gradient(from 0deg, var(--hero-blue), var(--accent), var(--hero-blue));animation:avatar-spin 6s linear infinite}
+.hero__avatar{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:3px solid var(--bg);background:var(--surface)}
+.hero__status{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12.5px;letter-spacing:.08em;color:var(--accent);text-transform:uppercase}
+.hero__status-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(0.8)}}
+@keyframes avatar-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.hero__actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:14.5px;padding:14px 26px;border-radius:6px;transition:all .2s ease}
+.btn--orange{background:var(--btn-orange);color:#060913}
+.btn--orange:hover{background:var(--btn-orange-hover);transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,158,11,0.25)}
+.btn--ghost{border:1px solid var(--border);color:var(--text)}
+.btn--ghost:hover{border-color:var(--hero-blue);color:var(--hero-blue);transform:translateY(-2px)}
+.btn--ghost span{color:var(--hero-blue)}
+.hero__graph{display:flex;justify-content:center}
+.node-graph{width:100%;max-width:340px}
+.ng-node rect{transition:stroke 0.25s ease, filter 0.25s ease}
+.ng-node{cursor:default}
+.ng-node:hover rect{stroke:var(--hero-blue);filter:drop-shadow(0 0 6px rgba(96,165,250,0.5))}
+.ng-node--accent:hover rect{stroke:var(--accent);filter:drop-shadow(0 0 8px rgba(47,214,192,0.6))}
+.ng-node text{transition:fill 0.25s ease}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;min-height:auto}
+  .hero__graph{display:none}
+}
+
+/* Premium Metrics Header */
+.metrics-row {display:grid; grid-template-columns:repeat(auto-fit, minmax(140px, 1fr)); gap:24px; border-bottom:1px solid var(--border); padding-bottom:32px; margin-bottom:48px}
+.metric-box {display:flex; flex-direction:column; gap:6px}
+.metric-box__val {font-family:var(--font-display); font-size:36px; font-weight:700; color:var(--text); line-height:1}
+.metric-box__lbl {font-family:var(--font-mono); font-size:11.5px; color:var(--muted); text-transform:uppercase; letter-spacing:0.05em}
+
+/* ALTERNATING STAGGERED TIMELINE LAYOUT (Directly matching image_07c5d0.png) */
+.journey-axis {position:relative; margin:60px auto 0 auto; padding:20px 0}
+.journey-axis::before {
+  content:''; position:absolute; left:50%; top:0; bottom:0; width:2px; 
+  background:var(--border); transform:translateX(-50%); z-index:1;
+}
+
+.journey-node {position:relative; display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:72px; align-items:start}
+
+/* Central Axis Anchor Point */
+.journey-marker-zone {
+  position:absolute; left:50%; top:26px; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; z-index:10; pointer-events:none;
+}
+.journey-pointer {
+  width:12px; height:12px; border-radius:50%; background:var(--bg); 
+  border:2px solid var(--hero-blue); transition:all 0.3s ease;
+}
+.journey-node:hover .journey-pointer {
+  background:var(--hero-blue); box-shadow:0 0 12px var(--hero-blue); transform:scale(1.2);
+}
+.journey-year-label {
+  font-family:var(--font-mono); font-size:13px; font-weight:700; color:var(--hero-blue);
+  background:var(--bg); padding:2px 8px; margin-top:6px; border-radius:4px; border:1px solid var(--border);
+}
+
+/* Positioning Alternating Elements */
+.journey-node--left .terminal-card {grid-column:1}
+.journey-node--right .terminal-card {grid-column:2}
+
+/* High Density Terminal Card Styles */
+.terminal-card {background:var(--bg-elevated); border:1px solid var(--border); border-radius:8px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,0.15); transition:border 0.3s}
+.journey-node:hover .terminal-card {border-color:var(--hero-blue)}
+.terminal-card__head {background:rgba(15,23,42,0.4); padding:12px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between}
+.terminal-card__dots {display:flex; gap:6px}
+.terminal-card__dot {width:9px; height:9px; border-radius:50%}
+.terminal-card__dot--r {background:#ef4444}
+.terminal-card__dot--y {background:#f59e0b}
+.terminal-card__dot--g {background:#10b981}
+.terminal-card__path {font-family:var(--font-mono); font-size:12px; color:var(--muted-2)}
+.terminal-card__body {padding:24px}
+
+/* Nested Metrics Layout */
+.node-stats-grid {display:flex; gap:32px; margin:16px 0; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:16px}
+.node-stat-item {display:flex; flex-direction:column}
+.node-stat-num {font-family:var(--font-display); font-size:28px; font-weight:700; color:var(--text)}
+.node-stat-lbl {font-family:var(--font-mono); font-size:11px; color:var(--muted); text-transform:uppercase}
+
+/* High Density Table Components */
+.data-table-wrapper {margin:16px 0; border:1px solid var(--border); border-radius:6px; overflow:hidden; background:rgba(0,0,0,0.2)}
+.data-table {width:100%; border-collapse:collapse; font-family:var(--font-mono); font-size:12px; text-align:left}
+.data-table th {background:rgba(15,23,42,0.6); color:var(--muted); padding:8px 12px; font-weight:500; border-bottom:1px solid var(--border)}
+.data-table td {padding:8px 12px; border-bottom:1px solid rgba(255,255,255,0.03); color:var(--text)}
+.status-indicator {display:inline-flex; align-items:center; gap:6px}
+.status-dot {width:6px; height:6px; border-radius:50%}
+.status-dot--green {background:#10b981; box-shadow:0 0 8px #10b981}
+
+/* Interactive Expansion Controls */
+.chapter-expand-btn {margin-top:16px; font-family:var(--font-mono); font-size:12px; color:var(--hero-blue); display:inline-flex; align-items:center; gap:6px; cursor:pointer; transition:color 0.2s}
+.chapter-expand-btn:hover {color:var(--text)}
+.chapter-drawer {max-height:0; overflow:hidden; opacity:0; transition:all 0.35s ease; border-top:0 solid transparent}
+.chapter-drawer.is-open {max-height:400px; opacity:1; padding-top:16px; margin-top:16px; border-top:1px dashed var(--border)}
+
+.exp-header {display:flex; justify-content:space-between; align-items:flex-start; gap:16px; flex-wrap:wrap; margin-bottom:12px}
+.exp-title {font-size:18px; font-weight:600}
+.exp-title span {color:var(--hero-blue); font-size:14px; font-family:var(--font-mono); display:inline-block; margin-left:4px}
+.exp-meta {text-align:right; font-family:var(--font-mono); font-size:13px}
+.exp-date {color:var(--text); font-weight:500}
+.exp-company {display:block; font-family:var(--font-mono); font-size:12.5px; color:var(--hero-blue); margin-bottom:16px}
+
+.bash-cmd {font-family:var(--font-mono); font-size:13px; color:var(--accent); margin-bottom:16px; display:flex; gap:8px}
+.bash-cmd span {color:var(--text)}
+
+.exp-bullets {list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:20px}
+.exp-bullets li {position:relative; padding-left:18px; font-size:14.5px; color:var(--muted); line-height:1.6}
+.exp-bullets li::before {content:'→'; position:absolute; left:0; color:var(--hero-blue)}
+
+.exp-tags {display:flex; flex-wrap:wrap; gap:8px}
+.exp-tag {font-family:var(--font-mono); font-size:12px; color:var(--muted); background:rgba(255,255,255,0.03); border:1px solid var(--border); padding:4px 10px; border-radius:4px}
+
+/* RESPONSIVE TIMELINE RE-ALIGNMENT FOR MOBILE */
+@media (max-width:960px) {
+  .journey-axis::before {left:20px; transform:none}
+  .journey-node {grid-template-columns:1fr; gap:20px; padding-left:48px}
+  .journey-node--left .terminal-card, .journey-node--right .terminal-card {grid-column: 1}
+  
+  .journey-marker-zone {left:20px; transform:translateX(-50%); top:24px}
+  .journey-year-label {position:absolute; left:28px; top:-4px; margin-top:0; white-space:nowrap}
+}
+
+/* Projects Showcase Styling */
+.projects-grid {display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 24px; margin-top: 40px;}
+.project-card {background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; flex-direction: column; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;}
+.project-card:hover {border-color: var(--hero-blue); transform: translateY(-4px); box-shadow: 0 12px 30px rgba(96,165,250,0.08);}
+.project-card__header {display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--muted-2); margin-bottom: 20px;}
+.project-card__diagram-container {background: var(--bg); border: 1px dashed var(--border); padding: 32px 16px; border-radius: 8px; margin-bottom: 24px; display: flex; justify-content: center; align-items: center;}
+.mock-diagram-blueprint {display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 12px; flex-wrap: wrap; justify-content: center;}
+.blueprint-node {border: 1px solid var(--border); padding: 6px 12px; border-radius: 4px; color: var(--muted); background: var(--surface);}
+.blueprint-node.active-state {border-color: var(--btn-orange); color: var(--btn-orange);}
+.blueprint-vector {color: var(--muted-2); font-weight: bold; letter-spacing: -1px;}
+.project-card__content {display: flex; flex-direction: column; flex: 1;}
+.project-title {font-size: 18px; font-weight: 600; color: var(--text); line-height: 1.4; margin-bottom: 8px; font-family: var(--font-display);}
+.project-role {font-family: var(--font-mono); font-size: 12.5px; color: var(--hero-blue); margin-bottom: 16px;}
+.project-desc {color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px; flex: 1;}
+.project-card__footer {margin-top: auto; display: flex; justify-content: space-between; align-items: center; padding-top: 16px; border-top: 1px solid var(--border);}
+.project-tech-icons {display: flex; flex-wrap: wrap; gap: 12px;}
+.tech-icon {font-family: var(--font-mono); font-size: 12px; color: var(--muted-2);}
+.case-study-link {font-family: var(--font-mono); font-size: 12.5px; color: var(--muted-2); transition: color 0.2s ease;}
+.case-study-link:hover {color: var(--text);}
+
+/* Spotlight Architecture Matrix Layout */
+.spotlight-card {position:relative; background:var(--surface); border:1px solid var(--border); border-radius:var(--radius); overflow:hidden; display:flex; flex-direction:column}
+.spotlight-card::before {
+  content:''; position:absolute; inset:0; opacity:0;
+  background:radial-gradient(400px circle at var(--mx, 0px) var(--my, 0px), rgba(96,165,250,0.08), transparent 80%);
+  z-index:1; pointer-events:none; transition:opacity 0.4s ease;
+}
+.spotlight-card:hover::before {opacity:1}
+
+.layer {position:relative; z-index:2; display:flex; align-items:center; gap:24px; padding:24px 32px; border-bottom:1px solid var(--border); transition:background 0.2s}
+.layer:last-child {border-bottom:none}
+.layer:hover {background:rgba(255,255,255,0.01)}
+.layer__label {display:flex; align-items:center; gap:12px; font-family:var(--font-display); font-weight:600; font-size:16px; min-width:220px; color:var(--text)}
+.layer__index {font-family:var(--font-mono); font-size:11px; color:var(--hero-blue); background:rgba(96,165,250,0.1); padding:4px 8px; border-radius:6px; font-weight:700}
+.layer__chips {display:flex; flex-wrap:wrap; gap:10px; flex:1}
+
+.chip {font-family:var(--font-mono); font-size:12.5px; color:var(--muted); background:var(--bg); border:1px solid var(--border); padding:6px 14px; border-radius:999px; cursor:pointer; transition:all 0.2s ease}
+.chip:hover, .chip.is-selected {border-color:var(--hero-blue); color:var(--text); background:rgba(96,165,250,0.08); transform:translateY(-1px); box-shadow:0 4px 12px rgba(96,165,250,0.15)}
+.chip.is-selected {background:var(--hero-blue) !important; color:#060913 !important; font-weight:500}
+
+.matrix-insight-drawer {
+  background:rgba(5,7,15,0.4); border-top:1px solid var(--border); padding:0;
+  max-height:0; overflow:hidden; opacity:0; transition:all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family:var(--font-mono); font-size:13.5px; display:flex; align-items:center; gap:12px; color:var(--hero-blue);
+}
+body.light-theme .matrix-insight-drawer {background:rgba(0,0,0,0.02)}
+.matrix-insight-drawer.is-expanded {padding:16px 32px; max-height:80px; opacity:1}
+.matrix-insight-drawer .label-tag {color:var(--text); font-weight:600}
+.matrix-insight-drawer .desc-text {color:var(--muted)}
+
+@media (max-width:768px){
+  .layer {flex-direction:column; align-items:flex-start; gap:14px; padding:20px}
+  .matrix-insight-drawer.is-expanded {max-height:120px; padding:16px 20px}
+}
+
+/* Console Environment Component */
+.console-wrapper{margin-top:24px;background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;overflow:hidden;box-shadow:0 20px 40px rgba(0,0,0,0.2)}
+.console-header{background:rgba(15,23,42,0.6);padding:14px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.console-dots{display:flex;gap:6px}
+.console-dot{width:10px;height:10px;border-radius:50%}
+.console-dot--red{background:#ef4444}
+.console-dot--yellow{background:#f59e0b}
+.console-dot--green{background:#10b981}
+.console-title{font-family:var(--font-mono);font-size:12px;color:var(--muted-2)}
+.console-tabs{display:flex;background:var(--bg);border-bottom:1px solid var(--border)}
+.console-tab{padding:12px 20px;font-family:var(--font-mono);font-size:13px;color:var(--muted);border-right:1px solid var(--border);cursor:pointer;transition:all 0.2s}
+.console-tab:hover{background:rgba(255,255,255,0.02);color:var(--text)}
+.console-tab.is-active{background:var(--bg-elevated);color:var(--hero-blue);border-bottom:2px solid var(--hero-blue)}
+.console-body{padding:24px;font-family:var(--font-mono);font-size:14px;color:var(--text);height:220px;overflow-y:auto;background:rgba(5,7,15,0.4)}
+body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
+.log-line{margin-bottom:8px;display:flex;gap:8px}
+.log-ts{color:var(--muted-2);user-select:none}
+.log-success{color:#10b981}
+.log-info{color:var(--hero-blue)}
+.log-warn{color:#f59e0b}
+
+/* Footer & Animation */
+.footer{border-top:1px solid var(--border);margin-top:100px;padding:60px clamp(20px,5vw,64px);display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;background:rgba(5,7,15,0.2)}
+.footer p{color:var(--muted);font-size:14.5px}
+.footer__links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.footer__links a{color:var(--muted);font-family:var(--font-mono);font-size:13px;transition:color 0.2s}
+.footer__links a:hover{color:var(--hero-blue)}
+.footer__copy{font-size:12.5px;color:var(--muted-2)}
+
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
+.reveal.is-visible{opacity:1;transform:translateY(0)}
+</style>
+</head>
+<body>
+<div class="bg-grid" aria-hidden="true"></div>
+
+<header class="nav">
+  <a href="#" class="nav__brand"><span class="prefix">~/</span>askur<span class="dot">.</span>rahman</a>
+  <nav class="nav__links" id="navLinks">
+    <div class="nav__menu-items">
+      <a href="#journey" class="is-active">/journey</a>
+      <a href="#projects">/projects</a>
+    </div>
+    <div class="nav__actions">
+      <a href="Askur-Rahman-Resume.pdf" download="Askur-Rahman-Resume.pdf" class="btn-nav-outline">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download CV
+      </a>
+      <a href="https://github.com/askurdev" target="_blank" rel="noopener" class="btn-nav-square" aria-label="GitHub Profile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2.17c-3.34.72-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.7.83.57A12 12 0 0 0 12 .3"/></svg>
+      </a>
+      <button class="btn-nav-square" id="themeToggleBtn" aria-label="Toggle UI Theme">
+        <svg id="themeToggleIcon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      </button>
+      <a href="https://telixor.com/contact-us/" target="_blank" rel="noopener" class="btn-nav-filled">Start a conversation</a>
+    </div>
+  </nav>
+  <button class="nav__toggle" id="navToggle" aria-label="Toggle menu">
+    <span></span><span></span><span></span>
+  </button>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero" id="hero">
+    <div class="hero__content reveal">
+      <div class="hero__identity">
+        <div class="hero__avatar-wrap">
+          <img src="askur-avatar.png" alt="Askur Rahman" class="hero__avatar">
+        </div>
+        <div class="hero__status"><span class="hero__status-dot"></span>AI Integration Specialist &middot; CTO @ Telixor</div>
+      </div>
+      <h1 class="hero__name">
+        AI Integration Specialist &amp; Full-Stack Developer.
+        <span class="hero__highlight">Building production-grade software, end-to-end.</span>
+      </h1>
+      <p class="hero__pitch">
+        Full-stack developer across React, Next.js, and Node.js &mdash; building e-commerce platforms, business websites, and web tools end-to-end. Currently CTO at Telixor, leading architecture, system design, and delivery for a marketplace platform connecting clients with developers.
+      </p>
+      <div class="hero__actions">
+        <a href="https://telixor.com/contact-us/" target="_blank" rel="noopener" class="btn btn--orange">Start a conversation &rarr;</a>
+        <a href="https://wa.me/8801744213949" target="_blank" rel="noopener" class="btn btn--ghost">Direct Matrix Call <span>&rarr; WhatsApp</span></a>
+      </div>
+    </div>
+    <div class="hero__graph" aria-hidden="true">
+      <svg class="node-graph" viewBox="0 0 400 420" xmlns="http://www.w3.org/2000/svg">
+        <line x1="200" y1="84" x2="200" y2="168" stroke="rgba(51,65,85,0.4)" stroke-width="1.5"/>
+        <line x1="200" y1="232" x2="100" y2="318" stroke="rgba(51,65,85,0.4)" stroke-width="1.5"/>
+        <line x1="200" y1="232" x2="300" y2="318" stroke="rgba(51,65,85,0.4)" stroke-width="1.5"/>
+        <g class="ng-node"><rect x="130" y="40" width="140" height="44" rx="8" fill="#0f172a" stroke="rgba(51,65,85,0.5)"/><text x="200" y="66" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600" letter-spacing="0.5" text-anchor="middle">CLIENT REQUEST</text></g>
+        <g class="ng-node ng-node--accent"><rect x="118" y="168" width="164" height="52" rx="10" fill="rgba(96,165,250,0.1)" stroke="#60a5fa" stroke-width="1.5"/><text x="200" y="200" fill="#f8fafc" font-family="monospace" font-size="12.5" font-weight="700" letter-spacing="0.5" text-anchor="middle">AI GATEWAY</text></g>
+        <g class="ng-node"><rect x="26" y="318" width="148" height="44" rx="8" fill="#0f172a" stroke="rgba(51,65,85,0.5)"/><text x="100" y="344" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600" letter-spacing="0.5" text-anchor="middle">VECTOR STORE</text></g>
+        <g class="ng-node"><rect x="226" y="318" width="148" height="44" rx="8" fill="#0f172a" stroke="rgba(51,65,85,0.5)"/><text x="300" y="344" fill="#f8fafc" font-family="monospace" font-size="11" font-weight="600" letter-spacing="0.5" text-anchor="middle">LLM ENGINE</text></g>
+        <circle cx="200" cy="140" r="4" fill="#60a5fa"><animate attributeName="opacity" values="1;0.35;1" dur="1.8s" repeatCount="indefinite"/></circle>
+        <circle cx="200" cy="260" r="4" fill="#2fd6c0"><animate attributeName="opacity" values="1;0.35;1" dur="1.8s" begin="0.4s" repeatCount="indefinite"/></circle>
+        <circle r="3.5" fill="#f59e0b"><animateMotion dur="2.4s" repeatCount="indefinite" path="M200,84 L200,232 L100,318"/></circle>
+        <circle r="3.5" fill="#2fd6c0"><animateMotion dur="2.8s" begin="0.6s" repeatCount="indefinite" path="M200,84 L200,232 L300,318"/></circle>
+      </svg>
+    </div>
+  </section>
+
+  <!-- High-Density Alternating Staggered Journey Section -->
+  <section class="journey-section" id="journey">
+    <div class="section__head reveal">
+      <p class="eyebrow">/journey &mdash; production timeline</p>
+      <h2>Twelve years, six chapters, one continuous climb.</h2>
+      <p class="section__sub">From founding CTO work at Telixor back through analytics leadership, full-stack engineering, freelance builds, and the junior tech role that started it all in 2014.</p>
+      <a href="https://www.linkedin.com/in/imaskur/" target="_blank" rel="noopener" class="verify-link">Verify full history on LinkedIn &#8599;</a>
+    </div>
+
+    <div class="metrics-row reveal">
+      <div class="metric-box"><span class="metric-box__val">12+ Yrs</span><span class="metric-box__lbl">In Tech Domain</span></div>
+      <div class="metric-box"><span class="metric-box__val">6</span><span class="metric-box__lbl">Career Chapters</span></div>
+      <div class="metric-box"><span class="metric-box__val">35%+</span><span class="metric-box__lbl">Perf Optimization</span></div>
+      <div class="metric-box"><span class="metric-box__val">8+</span><span class="metric-box__lbl">Client Platforms</span></div>
+    </div>
+
+    <!-- Center Line Thread Core -->
+    <div class="journey-axis">
+      
+      <!-- Chapter: Telixor (Jul 2025 - Present) -->
+      <div class="journey-node journey-node--left reveal">
+        <div class="journey-marker-zone">
+          <div class="journey-pointer"></div>
+          <div class="journey-year-label">2025</div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-card__head">
+            <div class="terminal-card__dots">
+              <div class="terminal-card__dot terminal-card__dot--r"></div>
+              <div class="terminal-card__dot terminal-card__dot--y"></div>
+              <div class="terminal-card__dot terminal-card__dot--g"></div>
+            </div>
+            <div class="terminal-card__path">~/journey/telixor-cto.sh</div>
+          </div>
+          <div class="terminal-card__body">
+            <div class="exp-header">
+              <h3 class="exp-title">Full-Stack Developer &amp; CTO</h3>
+              <div class="exp-meta"><span class="exp-date">Jul 2025 &mdash; Present &middot; 1 yr 1 mo</span></div>
+            </div>
+            <div class="exp-company">Telixor &middot; Full-time &middot; Remote</div>
+            <div class="node-stats-grid">
+              <div class="node-stat-item"><span class="node-stat-num">2</span><span class="node-stat-lbl">Platforms Shipped</span></div>
+              <div class="node-stat-item"><span class="node-stat-num">100%</span><span class="node-stat-lbl">Technical Ownership</span></div>
+            </div>
+            <div class="bash-cmd">$ deploy --platform=telixor --role=cto</div>
+            <p style="font-size: 14.5px; color: var(--muted);">Architected and built Telixor's web platform end-to-end, then launched a marketplace connecting clients with skilled developers.</p>
+            <div class="chapter-drawer" id="drawer-telixor">
+              <ul class="exp-bullets">
+                <li>Architected and built Telixor's web platform end-to-end using React.js, Next.js, and Node.js.</li>
+                <li>Led technical decisions across system design, database architecture, and cloud deployment.</li>
+                <li>Launched a marketplace platform connecting clients with skilled developers.</li>
+              </ul>
+              <div class="exp-tags"><span class="exp-tag">React.js</span><span class="exp-tag">Next.js</span><span class="exp-tag">Node.js</span><span class="exp-tag">Vercel</span><span class="exp-tag">System Architecture</span></div>
+            </div>
+            <span class="chapter-expand-btn" onclick="toggleDrawer('drawer-telixor', this)">+ read the full chapter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter: eMachines Limited (Apr 2024 - Jun 2025) -->
+      <div class="journey-node journey-node--right reveal">
+        <div class="journey-marker-zone">
+          <div class="journey-pointer"></div>
+          <div class="journey-year-label">2024</div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-card__head">
+            <div class="terminal-card__dots">
+              <div class="terminal-card__dot terminal-card__dot--r"></div>
+              <div class="terminal-card__dot terminal-card__dot--y"></div>
+              <div class="terminal-card__dot terminal-card__dot--g"></div>
+            </div>
+            <div class="terminal-card__path">~/journey/web-analytics-director.sh</div>
+          </div>
+          <div class="terminal-card__body">
+            <div class="exp-header">
+              <h3 class="exp-title">Web Analytics Director</h3>
+              <div class="exp-meta"><span class="exp-date">Apr 2024 &mdash; Jun 2025 &middot; 1 yr 3 mos</span></div>
+            </div>
+            <div class="exp-company">eMachines Limited &middot; Full-time &middot; Dhaka, Bangladesh (Remote)</div>
+            <div class="node-stats-grid">
+              <div class="node-stat-item"><span class="node-stat-num">60%+</span><span class="node-stat-lbl">Reporting Uplift</span></div>
+              <div class="node-stat-item"><span class="node-stat-num">5+</span><span class="node-stat-lbl">Clients Managed</span></div>
+            </div>
+            <div class="bash-cmd">$ ga4 --track=funnel --clients=5</div>
+            <p style="font-size: 14.5px; color: var(--muted);">Led the analytics layer that showed clients and teams exactly where their funnels were leaking.</p>
+            <div class="chapter-drawer" id="drawer-emachines">
+              <ul class="exp-bullets">
+                <li>Led web analytics strategy across client sites; implemented GA4 and custom event tracking, lifting actionable insight reporting by 60%.</li>
+                <li>Managed dashboards and monthly performance reporting for 5+ clients.</li>
+              </ul>
+              <div class="exp-tags"><span class="exp-tag">Google Analytics 4</span><span class="exp-tag">Data Visualization</span><span class="exp-tag">Conversion Optimization</span></div>
+            </div>
+            <span class="chapter-expand-btn" onclick="toggleDrawer('drawer-emachines', this)">+ read the full chapter</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chapter: OPB-Online Marketplace, Software Engineer / Web Developer (Jan 2019 - Mar 2024) -->
+      <div class="journey-node journey-node--left reveal">
+        <div class="journey-marker-zone">
+          <div class="journey-pointer"></div>
+          <div class="journey-year-label">2019</div>
+        </div>
+        <div class="terminal-card">
+          <div class="terminal-card__head">
+            <div class="terminal-card__dots">
+              <div class="terminal-card__dot terminal-card__dot--r"></div>
+              <div class="terminal-card__dot terminal-card__dot--y"></div>
+              <div class="terminal-card__dot terminal-card__dot--g"></div>
+            </div>
+            <div class="terminal-card__path">~/journey/opb-software-engineer.sh</div>
+          </div>
+          <div class="terminal-card__body">
+            <div class="exp-header">
+              <h3 class="exp-title">Software Engineer / Web Developer</h3>
+              <div class="exp-meta"><span class="exp-date">Jan 2019 &mdash; Mar 2024 &middot; 5 yrs 2 mos</span></div>
+            </div>
+            <div class="exp-company">OPB-Online Marketplace &middot; Full-time &middot; Remote</div>
+            <div class="node-stats-grid">
+              <div class="node-stat-item"><span class="node-stat-num">35%+</span><span class="node-stat-lbl">Faster Page Loads</span></div>
+              <div class="node-stat-item"><span class="node-stat-num">8+</span><span class="node-stat-lbl">Client Sites Shipped</span></div>
+            </div>
+            <div class="bash-cmd">$ build --stack=react-next --perf+35%</div>
+            <p style="font-size: 14.5px; color: var(--muted);">Five years building and scaling OPB's client-facing web platforms &mdash; from responsive business sites to performance-tuned, payment-integrated storefronts.</p>
+            <div class="chapter-drawer" id="drawer-opb">
+              <ul class="exp-bullets">
+                <li>Built responsive business websites with React.js and Next.js, reducing average page load time by 35%.</li>
+                <li>Delivered and maintained 8+ client websites, integrating third-party APIs and payment gateways.</li>
+              </ul>
+              <div class="exp-tags"><span class="exp-tag">React.js</span><span class="exp-tag">Next.js</span><span class="exp-tag">REST APIs</span><span class="exp-tag">Payment Gateways</span></div>
+            </div>
+            <span class="chapter-expand-btn" onclick="toggleDrawer('drawer-opb', this)">+ read the full chapter</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:48px;">
+      <div class="bash-cmd">$ cat earlier-experience.log</div>
+      <div class="data-table-wrapper">
+        <table class="data-table">
+          <thead>
+            <tr><th>Role</th><th>Company</th><th>Years</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Full-Stack Developer (Freelance)</td><td>Upwork</td><td>2016 &ndash; 2020</td></tr>
+            <tr><td>IT Analyst</td><td>Energia Blanco Ltd.</td><td>2018 &ndash; 2020</td></tr>
+            <tr><td>Jr. Technology Officer</td><td>ALCO Pharma Limited</td><td>2014 &ndash; 2018</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:32px; display:flex; flex-wrap:wrap; gap:32px; justify-content:space-between; border-top:1px solid var(--border); padding-top:24px;">
+      <div>
+        <div class="metric-box__lbl" style="margin-bottom:8px;">Education</div>
+        <div style="font-family:var(--font-display); font-weight:600; color:var(--text); font-size:15px;">MBA &mdash; Manarat International University</div>
+      </div>
+      <div>
+        <div class="metric-box__lbl" style="margin-bottom:8px;">Certifications</div>
+        <div class="exp-tags">
+          <span class="exp-tag">PMP (Cert Prep)</span>
+          <span class="exp-tag">Google Data Analytics</span>
+          <span class="exp-tag">JS/HTML/CSS &mdash; Duke (Coursera)</span>
+          <span class="exp-tag">Advanced Google Ads</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Projects Showroom Section -->
+  <section id="projects" class="projects-section">
+    <div class="section__head reveal">
+      <p class="eyebrow">/projects &mdash; production build vault</p>
+      <h2>Five builds, fully documented.</h2>
+      <p class="section__sub">Selected case studies spanning frontend state architecture, backend infrastructure, sandboxed evaluation, and distributed systems design.</p>
+    </div>
+
+    <div class="projects-grid reveal">
+
+      <!-- PROJECT 1: FRONTEND -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/worldcup-fe</span>
+          <span class="project-date">2026</span>
+        </div>
+        
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">Client (BST)</div>
+            <div class="blueprint-vector">──[ Mutation ]──></div>
+            <div class="blueprint-node active-state">UI State Tree</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">World Cup 2026 Dashboard — real-time tournament telemetry for BST timezone</h3>
+          <div class="project-role">Frontend Architect &amp; State Engineer</div>
+          <p class="project-desc">
+            A localized FIFA World Cup 2026 dashboard optimized for real-time tournament telemetry. Features dynamic schedule mutation engines converting raw UTC match fixtures into Bangladesh Standard Time (BST) with zero layout shift. Engineered as Step 1 of an explicit 5-stage architectural pipeline, completely decoupling the rendering layer using a verified mock data engine to validate state changes and structural UI fidelity before backend cutover.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">React</span>
+              <span class="tech-icon">Next.js</span>
+              <span class="tech-icon">Zustand</span>
+            </div>
+            <a href="#" class="case-study-link">read the case study ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 2: BACKEND -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/worldcup-be</span>
+          <span class="project-date">2026</span>
+        </div>
+        
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">FastAPI Router</div>
+            <div class="blueprint-vector">──[ Redis ]──></div>
+            <div class="blueprint-node">PostgreSQL</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">Tournament Telemetry Core — high-concurrency asynchronous match engine</h3>
+          <div class="project-role">Backend Infrastructure Engineer</div>
+          <p class="project-desc">
+            An asynchronous FastAPI backend engine built to orchestrate and serve live tournament states across 7 comprehensive REST API modules. Implements rigid relational schemas inside PostgreSQL with Alembic migrations for zero-downtime structural database versioning. Features an aggressive Redis caching tier deployed to offload heavy read traffic from the primary database during transactional match telemetry spikes, coupled with a deterministic data-seeding framework aligned with the frontend mock schema.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">FastAPI</span>
+              <span class="tech-icon">PostgreSQL</span>
+              <span class="tech-icon">Redis</span>
+            </div>
+            <a href="#" class="case-study-link">read the case study ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 3: PYQUIZ PRO -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/pyquiz-pro</span>
+          <span class="project-date">2026</span>
+        </div>
+        
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">Code Input</div>
+            <div class="blueprint-vector">──[ Sandbox ]──></div>
+            <div class="blueprint-node">LLM Evaluator</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">PyQuiz Pro — sandboxed automated code evaluation and recruitment platform</h3>
+          <div class="project-role">Full-Stack Engineer &amp; AI Integrator</div>
+          <p class="project-desc">
+            A premium, enterprise-grade technical assessment platform engineered with a high-fidelity cyber-dark aesthetic for automated candidate evaluation. The application orchestrates a high-performance evaluation runtime: a sandboxed Python FastAPI execution pipeline for instant code parsing, coupled with an LLM-driven AI recruitment analyst framework. Delivers sub-second evaluation loops checking code control structures, recursive loop blocks, and operational logic validation while outputting structured predictive fit scores.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">Next.js</span>
+              <span class="tech-icon">FastAPI</span>
+              <span class="tech-icon">LangChain</span>
+            </div>
+            <a href="#" class="case-study-link">read the case study ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 4: INSTAGRAM SCALE -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/insta-scale</span>
+          <span class="project-date">2025-2026</span>
+        </div>
+        
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">Global Auth</div>
+            <div class="blueprint-vector">──[ Edge CDN ]──></div>
+            <div class="blueprint-node">Queue Plane</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">Distributed Media Engine — global scale system architecture matrix</h3>
+          <div class="project-role">Systems Architect (Case Study)</div>
+          <p class="project-desc">
+            A comprehensive architectural framework addressing the system design patterns required to sustain a highly scalable, distributed photo and video-sharing ecosystem. Focuses on balancing performance, horizontal scalability, and multi-region fault tolerance across two high-impact operations: a secure, low-latency session validation architecture for global authentication, and an isolated media delivery pipeline utilizing multi-tier edge CDN networks, geo-distributed caching grids, and stateless image-processing queues.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">Distributed</span>
+              <span class="tech-icon">CDN</span>
+              <span class="tech-icon">OAuth2</span>
+            </div>
+            <a href="#" class="case-study-link">read the case study ↗</a>
+          </div>
+        </div>
+      </article>
+
+      <!-- PROJECT 5: MESSAGING FABRIC -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/messaging-fabric</span>
+          <span class="project-date">2025</span>
+        </div>
+        
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">WS Client</div>
+            <div class="blueprint-vector">──[ Kafka ]──></div>
+            <div class="blueprint-node">NoSQL Storage</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">Real-Time Messaging Fabric — persistent distributed WebSocket connection cluster</h3>
+          <div class="project-role">Distributed Systems Engineer</div>
+          <p class="project-desc">
+            An architectural system blueprint for an enterprise-grade instant messaging core engineered to route billions of concurrent transactional updates with sub-second delivery loops. Implements persistent WebSocket connection planes behind reverse-proxy load balancers to maintain active user states, backed by a horizontally partitioned NoSQL storage layer for persistent message logging. Mitigates high-concurrency race conditions through message-queue backpressure layers, dead-letter routing, and out-of-order sequence reconciliation engines.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">WebSockets</span>
+              <span class="tech-icon">Kafka</span>
+              <span class="tech-icon">SystemDesign</span>
+            </div>
+            <a href="#" class="case-study-link">read the case study ↗</a>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Production-Grade Ecosystem Matrix Section -->
+  <section class="stack" id="stack">
+    <div class="section__head reveal">
+      <p class="eyebrow">Architecture Matrix</p>
+      <h2>Production-Grade Ecosystem</h2>
+      <p class="section__sub">Click on any engineering asset chip to stream isolated deployment orchestration specifications instantly.</p>
+    </div>
+    
+    <div class="spotlight-card reveal" id="interactiveMatrix">
+      <!-- Layer 01 -->
+      <div class="layer">
+        <div class="layer__label"><span class="layer__index">01</span> Client Frameworks</div>
+        <div class="layer__chips">
+          <span class="chip" data-tech="js">JavaScript (ES6+)</span>
+          <span class="chip" data-tech="react">React.js</span>
+          <span class="chip" data-tech="next">Next.js (App Router)</span>
+          <span class="chip" data-tech="ts">TypeScript</span>
+          <span class="chip" data-tech="tailwind">Tailwind CSS</span>
+          <span class="chip" data-tech="zustand">Zustand</span>
+        </div>
+      </div>
+      <!-- Layer 02 -->
+      <div class="layer">
+        <div class="layer__label"><span class="layer__index">02</span> Backend Services</div>
+        <div class="layer__chips">
+          <span class="chip" data-tech="node">Node.js</span>
+          <span class="chip" data-tech="express">Express.js</span>
+          <span class="chip" data-tech="python">Python</span>
+          <span class="chip" data-tech="fastapi">FastAPI (Python)</span>
+          <span class="chip" data-tech="rest">RESTful Architecture</span>
+          <span class="chip" data-tech="ws">WebSockets</span>
+        </div>
+      </div>
+      <!-- Layer 03 -->
+      <div class="layer">
+        <div class="layer__label"><span class="layer__index">03</span> Storage Systems</div>
+        <div class="layer__chips">
+          <span class="chip" data-tech="mongo">MongoDB (Mongoose)</span>
+          <span class="chip" data-tech="postgres">PostgreSQL</span>
+          <span class="chip" data-tech="mysql">MySQL</span>
+          <span class="chip" data-tech="redis">Redis (Caching)</span>
+        </div>
+      </div>
+      <!-- Layer 04 -->
+      <div class="layer">
+        <div class="layer__label"><span class="layer__index">04</span> DevOps &amp; Operations</div>
+        <div class="layer__chips">
+          <span class="chip" data-tech="git">Git / GitHub</span>
+          <span class="chip" data-tech="docker">Docker</span>
+          <span class="chip" data-tech="aws">AWS Engine</span>
+          <span class="chip" data-tech="vercel">Vercel Edge Platform</span>
+          <span class="chip" data-tech="cicd">CI/CD Pipelines</span>
+          <span class="chip" data-tech="jest">Jest / TDD</span>
+        </div>
+      </div>
+      <!-- Layer 05 -->
+      <div class="layer">
+        <div class="layer__label"><span class="layer__index">05</span> AI &amp; LLM Engineering</div>
+        <div class="layer__chips">
+          <span class="chip" data-tech="llm">LLM Integration</span>
+          <span class="chip" data-tech="rag">RAG Pipelines</span>
+          <span class="chip" data-tech="langchain">LangChain</span>
+          <span class="chip" data-tech="vectordb">Vector Databases</span>
+          <span class="chip" data-tech="prompteng">Prompt Engineering</span>
+        </div>
+      </div>
+      
+      <!-- Intelligence Insight Drawer -->
+      <div class="matrix-insight-drawer" id="insightDrawer">
+        <span class="label-tag" id="drawerTechName">Selected System:</span>
+        <span class="desc-text" id="drawerTechDesc">Select an option</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sandbox Console Section -->
+  <section id="sandbox" class="sandbox-section">
+    <div class="section__head reveal">
+      <p class="eyebrow">/sandbox &mdash; runtime log environment</p>
+      <h2>Live Container Simulation</h2>
+      <p class="section__sub">ইকোসিস্টেমের লাইভ নোড কম্পাইলেশন ট্র্যাকিং এবং আইসোলেটেড রানটাইম স্টেট মনিটরিং ড্যাশবোর্ড।</p>
+    </div>
+
+    <div class="console-wrapper reveal">
+      <div class="console-header">
+        <div class="console-dots">
+          <div class="console-dot console-dot--red"></div>
+          <div class="console-dot console-dot--yellow"></div>
+          <div class="console-dot console-dot--green"></div>
+        </div>
+        <div class="console-title">bash &mdash; askur@production-v8</div>
+      </div>
+      <div class="console-tabs">
+        <div class="console-tab is-active" data-tab="build">build.log</div>
+        <div class="console-tab" data-tab="runtime">runtime.err</div>
+        <div class="console-tab" data-tab="network">network.trace</div>
+      </div>
+      <div class="console-body" id="consoleBody">
+        <!-- Lines driven via JavaScript stream allocation loops -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__links">
+      <a href="#hero">// root</a>
+      <a href="#journey">// journey</a>
+      <a href="#projects">// projects</a>
+    </div>
+    <p class="footer__copy">&copy; 2026 Askur Rahman. Driven by clean, scalable, micro-optimized system engineering loops.</p>
+  </footer>
+</main>
+
+<script>
+// Toggle Expandable Timeline Chapter Drawer
+function toggleDrawer(id, btn) {
+  const drawer = document.getElementById(id);
+  if(drawer) {
+    drawer.classList.toggle('is-open');
+    if(drawer.classList.contains('is-open')) {
+      btn.textContent = "- collapse chapter";
+    } else {
+      btn.textContent = "+ read the full chapter";
+    }
+  }
+}
+
+// Mobile Navigation Toggle
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+if(navToggle && navLinks) {
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('is-open');
+  });
+  
+  document.querySelectorAll('.nav__menu-items a').forEach(link => {
+    link.addEventListener('click', () => navLinks.classList.remove('is-open'));
+  });
+}
+
+// Light / Dark Theme Logic
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+const bodyElement = document.body;
+
+if (themeToggleBtn) {
+  themeToggleBtn.addEventListener('click', () => {
+    bodyElement.classList.toggle('light-theme');
+    const isLight = bodyElement.classList.contains('light-theme');
+    try { localStorage.setItem('theme', isLight ? 'light' : 'dark'); } catch (e) {}
+  });
+}
+
+try {
+  if (localStorage.getItem('theme') === 'light') {
+    bodyElement.classList.add('light-theme');
+  }
+} catch (e) {}
+
+// Matrix Interactive Spotlight Mouse Effect
+const matrixCard = document.getElementById('interactiveMatrix');
+if (matrixCard) {
+  matrixCard.addEventListener('mousemove', (e) => {
+    const rect = matrixCard.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    matrixCard.style.setProperty('--mx', `${x}px`);
+    matrixCard.style.setProperty('--my', `${y}px`);
+  });
+}
+
+// Tech Specs Matrix Metadata Stream Setup
+const techDatabase = {
+  react: "React.js Framework &mdash; Optimizing view mutations using virtual diff scheduling loops.",
+  next: "Next.js (App Router) &mdash; Hybrid server-rendering with granular layout boundary controls.",
+  ts: "TypeScript &mdash; Compile-time static type validation preventing telemetry mutations.",
+  tailwind: "Tailwind CSS &mdash; Atomic CSS tokens compiling down to near-zero runtime overhead.",
+  zustand: "Zustand &mdash; Centralized atomic state-stores decoupled from heavy Context rendering paths.",
+  node: "Node.js Engine &mdash; Asynchronous event-driven I/O built on Chrome's V8 compiler runtime.",
+  express: "Express.js &mdash; Minimalist request routers handling low-overhead microservice routing.",
+  fastapi: "FastAPI &mdash; Async concurrency routing utilizing Python structural Pydantic validation nodes.",
+  rest: "RESTful Architecture &mdash; Uniform stateless endpoint configurations balancing data payloads.",
+  ws: "WebSockets &mdash; Full-duplex persistent state channels enabling sub-millisecond execution updates.",
+  mongo: "MongoDB &mdash; NoSQL schema-validated document infrastructure supporting high-velocity mutations.",
+  postgres: "PostgreSQL &mdash; Enterprise ACID-compliant relational data platform isolating data layers safely.",
+  mysql: "MySQL &mdash; High-throughput transactional core handling relational constraints cleanly.",
+  redis: "Redis &mdash; Key-value network memory blocks serving sub-millisecond layer caching cycles.",
+  docker: "Docker &mdash; Isolation engine containerizing structural dependency maps standard across clusters.",
+  aws: "AWS Cloud &mdash; Topographic asset layout allocating core VPC pipelines globally.",
+  vercel: "Vercel Platform &mdash; Globally optimized Edge network handling serverless ingress operations.",
+  cicd: "CI/CD Pipelines &mdash; Automated execution runners ensuring strict artifact integration checks.",
+  jest: "Jest Engineering &mdash; Unit assertions loops keeping continuous feature branches regression-free.",
+  llm: "LLM Integration &mdash; Wiring large language models into product workflows for real-time inference.",
+  rag: "RAG Pipelines &mdash; Grounding model outputs in retrieved context for accurate, up-to-date answers.",
+  langchain: "LangChain &mdash; Orchestration framework chaining prompts, tools, and retrieval steps together.",
+  vectordb: "Vector Databases &mdash; Embedding-based similarity search powering semantic retrieval layers.",
+  prompteng: "Prompt Engineering &mdash; Structured prompt design maximizing the reliability of model output.",
+  js: "JavaScript (ES6+) &mdash; Modern syntax and async patterns powering every layer of the stack.",
+  python: "Python &mdash; General-purpose language behind data tooling and FastAPI services.",
+  git: "Git / GitHub &mdash; Version control and collaboration backbone for every shipped repo."
+};
+
+const chips = document.querySelectorAll('.chip');
+const drawer = document.getElementById('insightDrawer');
+const drawerName = document.getElementById('drawerTechName');
+const drawerDesc = document.getElementById('drawerTechDesc');
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const activeTech = chip.getAttribute('data-tech');
+    
+    if (chip.classList.contains('is-selected')) {
+      chip.classList.remove('is-selected');
+      drawer.classList.remove('is-expanded');
+    } else {
+      chips.forEach(c => c.classList.remove('is-selected'));
+      chip.classList.add('is-selected');
+      
+      drawerName.textContent = `${chip.textContent}: `;
+      drawerDesc.innerHTML = techDatabase[activeTech] || "Production orchestration matrix defined.";
+      drawer.classList.add('is-expanded');
+    }
+  });
+});
+
+// Console System Sandbox Simulation Router Loops
+const consoleBody = document.getElementById('consoleBody');
+const consoleTabs = document.querySelectorAll('.console-tab');
+
+const logDatabase = {
+  build: [
+    { type: 'info', text: 'yarn run production:compile' },
+    { type: 'info', text: 'Optimizing workspace dependencies structures...' },
+    { type: 'success', text: '✓ Client compilation completed successfully [3.84s]' },
+    { type: 'success', text: '✓ Global Edge Routing matrices allocated.' },
+    { type: 'info', text: 'Final build bundle footprint: 68.4kb (gzipped)' }
+  ],
+  runtime: [
+    { type: 'info', text: 'Spawning execution clusters across V8 isolated pools...' },
+    { type: 'success', text: 'Cluster Node_A0: Active on port 8080 (Ingress status green)' },
+    { type: 'warn', text: 'Memory optimization trace: Redis engine threshold allocated at 14.2MB context matrix.' },
+    { type: 'success', text: 'Global health checkpoints: 100% operational.' }
+  ],
+  network: [
+    { type: 'info', text: 'Streaming Edge telemetry connection threads...' },
+    { type: 'info', text: 'GET /api/v1/marketplace/engine - 200 OK - 32ms' },
+    { type: 'info', text: 'POST /api/v1/analytics/telemetry - 201 Created - 14ms' },
+    { type: 'success', text: 'Persistent WebSocket channel attached to active UI client node.' }
+  ]
+};
+
+function populateLogs(tabKey) {
+  if(!consoleBody) return;
+  consoleBody.innerHTML = '';
+  const chosenLogs = logDatabase[tabKey] || [];
+  
+  chosenLogs.forEach(log => {
+    const line = document.createElement('div');
+    line.className = 'log-line';
+    
+    const timestamp = document.createElement('span');
+    timestamp.className = 'log-ts';
+    timestamp.textContent = `[${new Date().toLocaleTimeString()}]`;
+    
+    const message = document.createElement('span');
+    message.className = `log-${log.type}`;
+    message.innerHTML = ` ${log.text}`;
+    
+    line.appendChild(timestamp);
+    line.appendChild(message);
+    consoleBody.appendChild(line);
+  });
+}
+
+consoleTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    consoleTabs.forEach(t => t.classList.remove('is-active'));
+    tab.classList.add('is-active');
+    populateLogs(tab.getAttribute('data-tab'));
+  });
+});
+
+populateLogs('build');
+
+// Scroll Reveal Intersection Observer Framework
+const revealElements = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('is-visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => revealObserver.observe(el));
+
+// Active Menu Highlighting during scrolling loops
+const sections = document.querySelectorAll('main > section');
+const navItems = document.querySelectorAll('.nav__menu-items a');
+
+window.addEventListener('scroll', () => {
+  let activeId = '';
+  sections.forEach(section => {
+    const top = section.offsetTop - 120;
+    if (window.scrollY >= top) {
+      activeId = section.getAttribute('id');
+    }
+  });
+
+  navItems.forEach(item => {
+    item.classList.remove('is-active');
+    if (item.getAttribute('href') === `#${activeId}`) {
+      item.classList.add('is-active');
+    }
+  });
+});
+</script>
+</body>
+</html>
