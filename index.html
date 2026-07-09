@@ -4,6 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Askur Rahman — AI Integration Specialist &amp; Full-Stack Developer</title>
+<meta name="description" content="Askur Rahman — AI Integration Specialist and Full-Stack Developer. CTO at Telixor, building production-grade software with React, Next.js, Node.js, and LLM/RAG integrations.">
+<meta property="og:title" content="Askur Rahman — AI Integration Specialist &amp; Full-Stack Developer">
+<meta property="og:description" content="CTO at Telixor. Full-stack engineering across React, Next.js, and Node.js, with hands-on LLM and RAG integration work.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://imaskur.vercel.app">
+<link rel="canonical" href="https://imaskur.vercel.app">
+<meta name="twitter:card" content="summary">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23060913'/%3E%3Ctext x='50' y='66' font-family='monospace' font-size='46' font-weight='700' fill='%232fd6c0' text-anchor='middle'%3E%3E_%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -291,19 +299,45 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
 .footer{border-top:1px solid var(--border);margin-top:100px;padding:60px clamp(20px,5vw,64px);display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center;background:rgba(5,7,15,0.2)}
 .footer p{color:var(--muted);font-size:14.5px}
 .footer__links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
-.footer__links a{color:var(--muted);font-family:var(--font-mono);font-size:13px;transition:color 0.2s}
+.footer__links a{position:relative;color:var(--muted);font-family:var(--font-mono);font-size:13px;transition:color 0.2s;padding-bottom:2px}
+.footer__links a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--hero-blue);transition:width 0.25s ease}
 .footer__links a:hover{color:var(--hero-blue)}
+.footer__links a:hover::after{width:100%}
+.footer__social{display:flex;gap:14px}
+.footer__icon-link{display:flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:50%;border:1px solid var(--border);color:var(--muted);transition:color 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease}
+.footer__icon-link:hover{color:var(--hero-blue);border-color:var(--hero-blue);transform:translateY(-3px);box-shadow:0 6px 16px rgba(96,165,250,0.2)}
+.footer__status{display:flex;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12px;color:var(--muted-2)}
+.footer__status-dot{width:6px;height:6px;border-radius:50%;background:#10b981;box-shadow:0 0 6px #10b981;animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0}
 .footer__copy{font-size:12.5px;color:var(--muted-2)}
 
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
+
+/* Sticky Floating Quick-Actions (View/Download Resume, Hire Me) */
+.fab-stack{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.fab-btn{position:relative;display:flex;align-items:center;height:48px;width:48px;border-radius:24px;background:var(--bg-elevated);border:1px solid var(--border);color:var(--text);overflow:hidden;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,0.3);transition:width 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.2s ease}
+.fab-btn:hover{width:186px;border-color:var(--hero-blue);transform:translateX(-2px)}
+.fab-btn__icon{flex-shrink:0;width:48px;height:48px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.fab-btn__label{font-family:var(--font-mono);font-size:12.5px;padding-right:18px;opacity:0;transition:opacity 0.2s ease 0.05s}
+.fab-btn:hover .fab-btn__label{opacity:1}
+.fab-btn--primary{background:var(--btn-orange);border-color:var(--btn-orange);color:#060913}
+.fab-btn--primary:hover{background:var(--btn-orange-hover);border-color:var(--btn-orange-hover)}
+.fab-btn-wrap{position:relative}
+.fab-btn__pulse{position:absolute;inset:-5px;border-radius:29px;border:2px solid var(--btn-orange);opacity:0.6;animation:fab-pulse 2.2s ease-out infinite;pointer-events:none;z-index:-1}
+@keyframes fab-pulse{0%{transform:scale(0.9);opacity:0.6}100%{transform:scale(1.18);opacity:0}}
+@media (max-width:640px){
+  .fab-stack{right:12px;top:auto;bottom:20px;transform:none;gap:10px}
+  .fab-btn,.fab-btn__icon{height:44px;width:44px}
+  .fab-btn:hover{width:44px;transform:none}
+  .fab-btn__label{display:none}
+}
 </style>
 </head>
 <body>
 <div class="bg-grid" aria-hidden="true"></div>
 
 <header class="nav">
-  <a href="#" class="nav__brand"><span class="prefix">~/</span>askur<span class="dot">.</span>rahman</a>
+  <a href="#hero" class="nav__brand"><span class="prefix">~/</span>askur<span class="dot">.</span>rahman</a>
   <nav class="nav__links" id="navLinks">
     <div class="nav__menu-items">
       <a href="#journey" class="is-active">/journey</a>
@@ -371,13 +405,13 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
   <section class="journey-section" id="journey">
     <div class="section__head reveal">
       <p class="eyebrow">/journey &mdash; production timeline</p>
-      <h2>Twelve years, six chapters, one continuous climb.</h2>
-      <p class="section__sub">From founding CTO work at Telixor back through analytics leadership, full-stack engineering, freelance builds, and the junior tech role that started it all in 2014.</p>
+      <h2>Eight years, six chapters, one continuous climb.</h2>
+      <p class="section__sub">From founding CTO work at Telixor back through analytics leadership, full-stack engineering, and the first IT analyst role that started it all in 2018.</p>
       <a href="https://www.linkedin.com/in/imaskur/" target="_blank" rel="noopener" class="verify-link">Verify full history on LinkedIn &#8599;</a>
     </div>
 
     <div class="metrics-row reveal">
-      <div class="metric-box"><span class="metric-box__val">12+ Yrs</span><span class="metric-box__lbl">In Tech Domain</span></div>
+      <div class="metric-box"><span class="metric-box__val">8+ Yrs</span><span class="metric-box__lbl">In Tech Domain</span></div>
       <div class="metric-box"><span class="metric-box__val">6</span><span class="metric-box__lbl">Career Chapters</span></div>
       <div class="metric-box"><span class="metric-box__val">35%+</span><span class="metric-box__lbl">Perf Optimization</span></div>
       <div class="metric-box"><span class="metric-box__val">8+</span><span class="metric-box__lbl">Client Platforms</span></div>
@@ -542,8 +576,9 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
   <section id="projects" class="projects-section">
     <div class="section__head reveal">
       <p class="eyebrow">/projects &mdash; production build vault</p>
-      <h2>Five builds, fully documented.</h2>
-      <p class="section__sub">Selected case studies spanning frontend state architecture, backend infrastructure, sandboxed evaluation, and distributed systems design.</p>
+      <h2>Eight builds, fully documented.</h2>
+      <p class="section__sub">Selected case studies spanning frontend state architecture, backend infrastructure, sandboxed evaluation, distributed systems design, and full-stack product builds.</p>
+      <a href="https://github.com/askurdev" target="_blank" rel="noopener" class="verify-link">Browse the code on GitHub &#8599;</a>
     </div>
 
     <div class="projects-grid reveal">
@@ -575,8 +610,15 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
               <span class="tech-icon">Next.js</span>
               <span class="tech-icon">Zustand</span>
             </div>
-            <a href="#" class="case-study-link">read the case study ↗</a>
           </div>
+          <div class="chapter-drawer" id="proj-drawer-worldcup-fe">
+            <ul class="exp-bullets">
+                <li>Zustand store modeled around normalized match/fixture entities to avoid prop-drilling across the schedule grid.</li>
+                <li>Mock data layer mirrors the exact shape of the planned backend response, so swapping in the live API requires zero component changes.</li>
+                <li>BST conversion handled at the data layer, not in components &mdash; every view reads already-localized timestamps.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-worldcup-fe', this)">+ view technical details</span>
         </div>
       </article>
 
@@ -607,8 +649,15 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
               <span class="tech-icon">PostgreSQL</span>
               <span class="tech-icon">Redis</span>
             </div>
-            <a href="#" class="case-study-link">read the case study ↗</a>
           </div>
+          <div class="chapter-drawer" id="proj-drawer-worldcup-be">
+            <ul class="exp-bullets">
+                <li>Alembic migrations version-controlled independently from application code for safer, revertible schema changes.</li>
+                <li>Redis applied selectively as a cache-aside layer on read-heavy endpoints only, avoiding stale-write risk on live score updates.</li>
+                <li>Seed data generated deterministically from fixed fixture IDs, so frontend and backend teams test against identical data.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-worldcup-be', this)">+ view technical details</span>
         </div>
       </article>
 
@@ -639,8 +688,15 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
               <span class="tech-icon">FastAPI</span>
               <span class="tech-icon">LangChain</span>
             </div>
-            <a href="#" class="case-study-link">read the case study ↗</a>
           </div>
+          <div class="chapter-drawer" id="proj-drawer-pyquiz">
+            <ul class="exp-bullets">
+                <li>Each code submission runs in an isolated sandboxed process, preventing cross-contamination between candidate runs.</li>
+                <li>LLM evaluation prompts are rubric-driven rather than open-ended, keeping scoring consistent across repeated runs.</li>
+                <li>Static analysis runs before the LLM call, so obviously invalid submissions never consume a model invocation.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-pyquiz', this)">+ view technical details</span>
         </div>
       </article>
 
@@ -671,8 +727,15 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
               <span class="tech-icon">CDN</span>
               <span class="tech-icon">OAuth2</span>
             </div>
-            <a href="#" class="case-study-link">read the case study ↗</a>
           </div>
+          <div class="chapter-drawer" id="proj-drawer-insta">
+            <ul class="exp-bullets">
+                <li>Session validation designed stateless-first (signed tokens over server-side sessions) to support horizontal scaling without sticky sessions.</li>
+                <li>Read/write ratios modeled explicitly to justify a CDN-first caching strategy over deeper application-layer caching.</li>
+                <li>Image pipeline treated as an independent scaling unit from the core API, so media spikes never starve request handling.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-insta', this)">+ view technical details</span>
         </div>
       </article>
 
@@ -703,7 +766,121 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
               <span class="tech-icon">Kafka</span>
               <span class="tech-icon">SystemDesign</span>
             </div>
-            <a href="#" class="case-study-link">read the case study ↗</a>
+          </div>
+          <div class="chapter-drawer" id="proj-drawer-messaging">
+            <ul class="exp-bullets">
+                <li>Per-message sequence numbers support client-side out-of-order reconciliation without extra server round-trips.</li>
+                <li>Dead-letter queue paired with exponential backoff isolates poison messages instead of blocking healthy throughput.</li>
+                <li>Connection state kept out of application memory, so any gateway instance can restart without dropping client sessions.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-messaging', this)">+ view technical details</span>
+        </div>
+      </article>
+
+      <!-- PROJECT 6: BOOKSTORE MERN -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/bookstore-mern</span>
+          <span class="project-date">2023</span>
+        </div>
+
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">React Client</div>
+            <div class="blueprint-vector">&#9472;&#9472;[ CRUD ]&#9472;&#9472;></div>
+            <div class="blueprint-node">MongoDB</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">Bookstore &mdash; full-CRUD MERN inventory &amp; storefront</h3>
+          <div class="project-role">Full-Stack Developer</div>
+          <p class="project-desc">
+            A complete MERN-stack bookstore application supporting the full create-read-update-delete lifecycle for inventory. Users browse, add, edit, and remove book listings in real time, with a Stripe-integrated checkout flow handling purchase transactions end-to-end.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">React.js</span>
+              <span class="tech-icon">Express.js</span>
+              <span class="tech-icon">MongoDB</span>
+            </div>
+          </div>
+          <div class="chapter-drawer" id="proj-drawer-bookstore">
+            <ul class="exp-bullets">
+                <li>Full CRUD flow (create, post, edit, update, delete) implemented across both the storefront and an admin-facing view.</li>
+                <li>Stripe integrated directly into the checkout path for handling real payment transactions.</li>
+                <li>Firebase used alongside MongoDB for auth and supplementary storage needs.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-bookstore', this)">+ view technical details</span>
+        </div>
+      </article>
+
+      <!-- PROJECT 7: PORTFOLIO WEBSITE -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/portfolio-site</span>
+          <span class="project-date">2026</span>
+        </div>
+
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">CSS Variables</div>
+            <div class="blueprint-vector">&#9472;&#9472;[ Theme ]&#9472;&#9472;></div>
+            <div class="blueprint-node">Vanilla JS UI</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">This Portfolio &mdash; the site you're looking at right now</h3>
+          <div class="project-role">Designer &amp; Developer</div>
+          <p class="project-desc">
+            A dependency-free personal site built in plain HTML, CSS, and JavaScript &mdash; no framework, no build step. One CSS custom-property system drives the entire dark/light theme, while vanilla JS handles the interactive timeline, expandable technical drawers, and scroll-triggered reveal animations.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">HTML5</span>
+              <span class="tech-icon">CSS3</span>
+              <span class="tech-icon">JavaScript</span>
+            </div>
+          </div>
+          <div class="chapter-drawer" id="proj-drawer-portfolio">
+            <ul class="exp-bullets">
+                <li>Entire dark/light theme driven by a single set of CSS custom properties &mdash; no duplicated styles per theme.</li>
+                <li>IntersectionObserver powers the scroll-reveal animations without any external animation library.</li>
+                <li>Zero build tooling: what ships in the browser is the source file itself, deployed as-is.</li>
+            </ul>
+          </div>
+          <span class="chapter-expand-btn" onclick="toggleDrawer('proj-drawer-portfolio', this)">+ view technical details</span>
+        </div>
+      </article>
+
+      <!-- PROJECT 8: MY BLOG (placeholder -- details pending) -->
+      <article class="project-card">
+        <div class="project-card__header">
+          <span class="project-path">/projects/my-blog</span>
+          <span class="project-date">TBD</span>
+        </div>
+
+        <div class="project-card__diagram-container">
+          <div class="mock-diagram-blueprint">
+            <div class="blueprint-node">Writing</div>
+            <div class="blueprint-vector">&#9472;&#9472;[ Publish ]&#9472;&#9472;></div>
+            <div class="blueprint-node">Readers</div>
+          </div>
+        </div>
+
+        <div class="project-card__content">
+          <h3 class="project-title">My Blog &mdash; technical writing, write-up coming soon</h3>
+          <div class="project-role">Writer &amp; Developer</div>
+          <p class="project-desc">
+            A personal technical blog. Full details and live link are on the way &mdash; check back soon.
+          </p>
+          <div class="project-card__footer">
+            <div class="project-tech-icons">
+              <span class="tech-icon">Coming Soon</span>
+            </div>
           </div>
         </div>
       </article>
@@ -816,14 +993,43 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
 
   <!-- Footer -->
   <footer class="footer">
+    <div class="footer__social">
+      <a href="https://github.com/askurdev" target="_blank" rel="noopener" class="footer__icon-link" aria-label="GitHub">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2.17c-3.34.72-4.04-1.42-4.04-1.42-.55-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.82 2.8 1.3 3.49.99.1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .31.22.7.83.57A12 12 0 0 0 12 .3"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/imaskur/" target="_blank" rel="noopener" class="footer__icon-link" aria-label="LinkedIn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
+      </a>
+      <a href="mailto:imaskurrahman@gmail.com" class="footer__icon-link" aria-label="Email">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+      </a>
+    </div>
     <div class="footer__links">
       <a href="#hero">// root</a>
       <a href="#journey">// journey</a>
       <a href="#projects">// projects</a>
     </div>
+    <div class="footer__status">
+      <span class="footer__status-dot"></span>
+      <span id="footerClock">Dhaka, BD &middot; --:--:--</span>
+    </div>
     <p class="footer__copy">&copy; 2026 Askur Rahman. Driven by clean, scalable, micro-optimized system engineering loops.</p>
   </footer>
 </main>
+
+<div class="fab-stack reveal" aria-label="Quick actions">
+  <a href="Askur-Rahman-Resume.pdf" target="_blank" rel="noopener" class="fab-btn" aria-label="View Resume">
+    <span class="fab-btn__icon">&#128065;&#65039;</span>
+    <span class="fab-btn__label">View Resume</span>
+  </a>
+  <div class="fab-btn-wrap">
+    <span class="fab-btn__pulse"></span>
+    <a href="mailto:imaskurrahman@gmail.com?subject=Let%27s%20Connect" class="fab-btn fab-btn--primary" aria-label="Hire Me">
+      <span class="fab-btn__icon">&#128231;</span>
+      <span class="fab-btn__label">Hire Me</span>
+    </a>
+  </div>
+</div>
 
 <script>
 // Toggle Expandable Timeline Chapter Drawer
@@ -995,6 +1201,20 @@ consoleTabs.forEach(tab => {
 });
 
 populateLogs('build');
+
+// Live Dhaka clock in the footer status line
+function updateFooterClock() {
+  const el = document.getElementById('footerClock');
+  if (!el) return;
+  try {
+    const time = new Intl.DateTimeFormat('en-US', {
+      timeZone: 'Asia/Dhaka', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true
+    }).format(new Date());
+    el.textContent = `Dhaka, BD \u00b7 ${time}`;
+  } catch (e) {}
+}
+updateFooterClock();
+setInterval(updateFooterClock, 1000);
 
 // Scroll Reveal Intersection Observer Framework
 const revealElements = document.querySelectorAll('.reveal');
