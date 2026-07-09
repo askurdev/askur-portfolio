@@ -313,6 +313,13 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
 .reveal{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease}
 .reveal.is-visible{opacity:1;transform:translateY(0)}
 
+/* Email-copy fallback toast (for mailto: links when no mail client is configured) */
+.email-toast{position:fixed;left:50%;bottom:32px;transform:translateX(-50%) translateY(20px);z-index:500;
+  background:var(--bg-elevated);border:1px solid var(--hero-blue);color:var(--text);font-family:var(--font-mono);
+  font-size:12.5px;padding:10px 18px;border-radius:8px;box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  opacity:0;pointer-events:none;transition:opacity 0.25s ease, transform 0.25s ease}
+.email-toast.is-visible{opacity:1;transform:translateX(-50%) translateY(0)}
+
 /* Sticky Floating Quick-Actions (View/Download Resume, Hire Me) */
 .fab-stack{position:fixed;right:20px;top:50%;transform:translateY(-50%);z-index:200;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
 .fab-btn{position:relative;display:flex;align-items:center;height:48px;width:48px;border-radius:24px;background:var(--bg-elevated);border:1px solid var(--border);color:var(--text);overflow:hidden;white-space:nowrap;box-shadow:0 6px 20px rgba(0,0,0,0.3);transition:width 0.3s ease, border-color 0.3s ease, background 0.3s ease, transform 0.2s ease}
@@ -1000,7 +1007,7 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
       <a href="https://www.linkedin.com/in/imaskur/" target="_blank" rel="noopener" class="footer__icon-link" aria-label="LinkedIn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29ZM5.34 7.43a2.07 2.07 0 1 1 0-4.13 2.07 2.07 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45Z"/></svg>
       </a>
-      <a href="mailto:imaskurrahman@gmail.com" class="footer__icon-link" aria-label="Email">
+      <a href="mailto:imaskurrahman@gmail.com" class="footer__icon-link" aria-label="Email" id="footerEmailBtn">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
       </a>
     </div>
@@ -1024,12 +1031,14 @@ body.light-theme .console-body {background: rgba(0,0,0,0.01); color:#0f172a;}
   </a>
   <div class="fab-btn-wrap">
     <span class="fab-btn__pulse"></span>
-    <a href="mailto:imaskurrahman@gmail.com?subject=Let%27s%20Connect" class="fab-btn fab-btn--primary" aria-label="Hire Me">
+    <a href="mailto:imaskurrahman@gmail.com?subject=Let%27s%20Connect" class="fab-btn fab-btn--primary" aria-label="Hire Me" id="hireMeBtn">
       <span class="fab-btn__icon">&#128231;</span>
       <span class="fab-btn__label">Hire Me</span>
     </a>
   </div>
 </div>
+
+<div class="email-toast" id="emailToast">Email copied &mdash; imaskurrahman@gmail.com</div>
 
 <script>
 // Toggle Expandable Timeline Chapter Drawer
@@ -1215,6 +1224,27 @@ function updateFooterClock() {
 }
 updateFooterClock();
 setInterval(updateFooterClock, 1000);
+
+// Email-copy fallback: mailto: links only work if the visitor has a default
+// mail client configured. This copies the address to the clipboard too, so
+// the link is still useful even when no mail app opens.
+function wireEmailFallback(id) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.addEventListener('click', () => {
+    const toast = document.getElementById('emailToast');
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText('imaskurrahman@gmail.com').catch(() => {});
+    }
+    if (toast) {
+      toast.classList.add('is-visible');
+      clearTimeout(toast._hideTimer);
+      toast._hideTimer = setTimeout(() => toast.classList.remove('is-visible'), 2600);
+    }
+  });
+}
+wireEmailFallback('hireMeBtn');
+wireEmailFallback('footerEmailBtn');
 
 // Scroll Reveal Intersection Observer Framework
 const revealElements = document.querySelectorAll('.reveal');
